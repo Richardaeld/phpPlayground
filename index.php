@@ -10,31 +10,43 @@
 </head>
 <body>
     <h1>PHP Powered DM Dice Roll Tool</h1>
-    <h2>Pick a Dice or input your own!</h2>
-
-    <?php
-        // $spell_id = 0;
-        $api_dice = 'https://dnd-rolling-chart-api.herokuapp.com/api/button/main/viewAll/children/1';
-    ?>
-
+    <h2>Pick One Of Our Die or Input Your Own!</h2>
     <h3>
-        <div class="col-11 mt-5 mx-2 py-4 index-background flex-content-center">
+        <div class="col-11 mt-5 mx-2 py-4 index-background flex-content-center" style='color:black'>
 
             <?php
                 // inital api call
+                $api_dice = 'https://dnd-rolling-chart-api.herokuapp.com/api/button/main/viewAll/children/3';
                 $json_api_dice = file_get_contents($api_dice);
                 $dice_data = json_decode($json_api_dice);
+                $dice_data -> button[2]  = new stdClass;
+                $dice_data -> button[2] -> name  = "User input";
+                $dice_data -> button[2] -> obj_name  = "User input";
+                $dice_data -> button[2] -> parent_foreign_key  = false;
+
+                // echo '<pre>';
+                //     print_r($dice_data -> button);
+                // echo '</pre>';
+
                 foreach($dice_data -> button as $key => $value) {
                     echo '<form action="get" class="nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
                         $form_value = $value -> name;
+
                         // echo $form_value = $form_value[-1];
                         echo "<input type='hidden' name='lvl${form_value}' placeholder='${form_value}' value='${form_value}'>";
                         echo "<button class='hand-drawn-container-inner no-button' type='submit' name='level${form_value}' value='submit'>";
                             echo $value -> obj_name;
                         echo '</button>';
                     echo '</form>';
-
                 }
+
+
+                // echo '<form action="get" class="nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
+                //     echo "<input type='text' name='lvl${form_value}' placeholder='Input Your Own Die'>";
+                //         echo "<button class='hand-drawn-container-inner no-button' type='submit' name='level${form_value}' value='submit'>";
+                //             // echo $value -> obj_name;
+                //         echo '</button>';
+                // echo '</form>';
 
             ?>
         </div>
