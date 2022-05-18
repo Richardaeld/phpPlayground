@@ -13,8 +13,8 @@
     <h2>Pick a Dice or input your own!</h2>
 
     <?php
-        $spell_id = 0;
-        $api_levels = 'https://dnd-rolling-chart-api.herokuapp.com/api/button/main/viewAll/children/1';
+        // $spell_id = 0;
+        $api_dice = 'https://dnd-rolling-chart-api.herokuapp.com/api/button/main/viewAll/children/1';
     ?>
 
     <h3>
@@ -22,12 +22,12 @@
 
             <?php
                 // inital api call
-                $json_api_levels = file_get_contents($api_levels);
-                $levels_data = json_decode($json_api_levels);
-                foreach($levels_data -> button as $key => $value) {
+                $json_api_dice = file_get_contents($api_dice);
+                $dice_data = json_decode($json_api_dice);
+                foreach($dice_data -> button as $key => $value) {
                     echo '<form action="get" class="nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
                         $form_value = $value -> name;
-                        echo $form_value = $form_value[-1];
+                        // echo $form_value = $form_value[-1];
                         echo "<input type='hidden' name='lvl${form_value}' placeholder='${form_value}' value='${form_value}'>";
                         echo "<button class='hand-drawn-container-inner no-button' type='submit' name='level${form_value}' value='submit'>";
                             echo $value -> obj_name;
