@@ -45,31 +45,58 @@
     </h3>
 
     <h4>
-        <div class="col-11 mt-5 mx-2 py-4 index-background flex-content-center">
+        <div class="col-11 mt-5 mx-2 py-4 index-background flex-content-center" style="color:black">
             <?php
                 $test123 = 1;
 
                 $spell_level= 0;
-                if (isset($_GET['level2'])) {
-                    // $test123 = $_GET['lvl1'];
-                    // echo "<h1 style='color:black'>${test123}</h1>";
-                    $spell_level = 1;
-                    if (!($spell_level)) {
-                        $spell_level = 0;
-                    }
-                    $api_spells = "https://dnd-rolling-chart-api.herokuapp.com/api/spells/spellsByLevel/${spell_level}";
-                    $json_api_spells = file_get_contents($api_spells);
-                    $spells_data = json_decode($json_api_spells);
+                $test = $levels_data -> button;
+                // echo "<h1 style='color:black'>";
+                //     print_r (count($test));
+                // echo "</h1>";
 
-                    foreach($spells_data -> spells as $key => $value) {
+                foreach($levels_data -> button as $key => $value) {
+                    // echo $i;
+                    // $iter = $i;
+                    // echo $key;
+                    if (isset($_GET["level${key}"])){
+
+                        $api_spells = "https://dnd-rolling-chart-api.herokuapp.com/api/spells/spellsByLevel/${key}";
+                        $json_api_spells = file_get_contents($api_spells);
+                        $spells_data = json_decode($json_api_spells);
+                    foreach($spells_data -> spells as $spell_key => $spell_value) {
+
                         echo '<form action="get" class="nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
                             echo "<button class='hand-drawn-container-inner no-button' type='' name='' value=''>";
-                                echo $value -> name;
+                                echo $spell_value -> name;
                             echo '</button>';
                         echo '</form>';
-
                     }
+                    }
+
                 }
+
+                // if (isset($_GET['level2'])) {
+                    // $test123 = $_GET['lvl1'];
+                    // echo "<h1 style='color:black'>${test123}</h1>";
+                    // $spell_level = 1;
+
+                    // if (!($spell_level)) {
+                    //     $spell_level = 0;
+                    // }
+                    // $api_spells = "https://dnd-rolling-chart-api.herokuapp.com/api/spells/spellsByLevel/${spell_level}";
+                    // $json_api_spells = file_get_contents($api_spells);
+                    // $spells_data = json_decode($json_api_spells);
+
+                    // foreach($spells_data -> spells as $key => $value) {
+                    //     echo '<form action="get" class="nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
+                    //         echo "<button class='hand-drawn-container-inner no-button' type='' name='' value=''>";
+                    //             echo $value -> name;
+                    //         echo '</button>';
+                    //     echo '</form>';
+
+                    // }
+                // }
 
             ?>
         </div>
