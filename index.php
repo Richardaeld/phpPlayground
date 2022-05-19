@@ -38,7 +38,7 @@
     <section>
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col-11 mt-5 mx-2 py-4 flex-content-center" style="color:black">
+                <div class="col-12 mt-5 py-4 flex-content-center" style="color:black">
                     <?php
                         foreach($dice_data -> button as $key => $value) {
                             // Removes/add output container if there is output
@@ -60,8 +60,8 @@
                                 $random_roll_display_num = $random_roll_num + 1;
 
                                 echo "<div class='container-fluid'>";
-                                    echo "<div class='row justify-content-center'>";
-                                        echo "<div class='col-6 col-md-5 output spell-display py-5'>";
+                                    echo "<div class='row justify-content-between'>";
+                                        echo "<div class='col-12 col-md-5 output spell-display py-5 order-1 order-xl-0'>";
                                             echo '<span class="ouput spell-display">';
                                                 echo '<p><strong>Slide your DM your new roll?</strong></p>';
                                             echo '</span>';
@@ -76,10 +76,12 @@
                                         echo "</div>";
 
                                         $table_name = $value -> obj_name;
-                                        echo "<div class='col-6 col-md-6 output spell-display py-5'>";
+                                        echo "<div class='col-12 col-md-6 output spell-display py-5 order-0 order-xl-1 flex-content-center'>";
                                             echo "<p><strong>${table_name} Table:</strong></p>";
-                                            echo "<p class='spell-key mb-0'>You rolled a: ${random_roll_display_num}</p>";
-                                            echo "<p class='mb-0'><strong>${random_roll_value}</strong></p>";
+                                            echo "<span>";
+                                                echo "<p class='spell-key mb-0'>You rolled a: ${random_roll_display_num}</p>";
+                                                echo "<p class='mb-0'><strong>${random_roll_value}</strong></p>";
+                                            echo "</span>";
                                         echo "</div>";
                                     echo "</div>";
                                 echo "</div>";
