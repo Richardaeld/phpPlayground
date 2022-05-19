@@ -60,25 +60,35 @@
 
                                 echo "<div class='container-fluid'>";
                                     echo "<div class='row justify-content-center'>";
-                                        echo "<div class='col-11 col-md-6 output spell-display py-5'>";
+                                        echo "<div class='col-6 col-md-6 output spell-display py-5'>";
 
-
-
-                                        if(isset($_GET["userInput"])) {
-                                            // echo "I am here";
-
-                                            print_r($value -> $radio_button[1]);
-                                            print_r($value);
-
-                                        } else {
                                             echo "<p class='spell-key mb-0'>You rolled a: ${random_roll_display_num}</p>";
                                             echo "<p class='mb-0'><strong>${random_roll_value}</strong></p>";
 
-                                        }
-
                                         echo "</div>";
+
+
+                                        echo "<div class='col-6 col-md-5 output spell-display py-5'>";
+                                        echo '<span class="ouput spell-display">';
+                                            echo '<p><strong>Slide your DM your new roll?</strong></p>';
+                                        echo '</span>';
+                                        echo '<form action="get" class="mt-5 p-1 row nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
+                                            // $form_value = $value -> name;
+                                            // echo "<label class='col-12'>Slide your DM your roll?</label>";
+                                            echo "<input class='col-12 input-border' type='text' name='${form_value}' placeholder='7'>";
+                                            echo "<button class='col-12  no-button' type='submit' name='user${form_value}' value='submit'>";
+                                                echo 'Submit';
+                                            echo '</button>';
+                                        echo '</form>';
+                                    echo "</div>";
+
+
+
                                     echo "</div>";
                                 echo "</div>";
+
+
+
                             }
                         }
 
