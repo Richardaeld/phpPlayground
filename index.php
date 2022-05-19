@@ -34,15 +34,6 @@
                         echo '</button>';
                     echo '</form>';
                 }
-
-
-                // echo '<form action="get" class="nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
-                //     echo "<input type='text' name='lvl${form_value}' placeholder='Input Your Own Die'>";
-                //         echo "<button class='hand-drawn-container-inner no-button' type='submit' name='level${form_value}' value='submit'>";
-                //             // echo $value -> obj_name;
-                //         echo '</button>';
-                // echo '</form>';
-
             ?>
         </div>
     </h3>
@@ -51,36 +42,51 @@
         <div class="col-11 mt-5 mx-2 py-4 flex-content-center" style="color:black">
             <?php
 
-                echo '<pre>';
-                    print_r($dice_data -> button[1] -> id);
-                echo '</pre>';
+                // echo '<pre>';
+                //     print_r($dice_data -> button[2]);
+                // echo '</pre>';
 
                 foreach($dice_data -> button as $key => $value) {
+
                     if (isset($_GET[$value -> name])){
 
                         // print_r($value -> parent_foreign_key);
                         // print_r($value -> id);
 
-                        $parent_key =  $value -> id;
-                        $api_roll_content = "https://dnd-rolling-chart-api.herokuapp.com/api/button/sub/viewAll/children/${parent_key}";
-                        $json_api_roll_content = file_get_contents($api_roll_content);
-                        $roll_content_data = json_decode($json_api_roll_content);
-                        $random_roll_num = mt_rand(0, count($roll_content_data -> button) - 1);
-                        $random_roll_value = $roll_content_data -> button[$random_roll_num] -> value;
-                        $random_roll_display_num = $random_roll_num + 1;
+                        if ($value -> name !== "userInput") {
+                            $parent_key =  $value -> id;
+                            $api_roll_content = "https://dnd-rolling-chart-api.herokuapp.com/api/button/sub/viewAll/children/${parent_key}";
+                            $json_api_roll_content = file_get_contents($api_roll_content);
+                            $roll_content_data = json_decode($json_api_roll_content);
+                            $random_roll_num = mt_rand(0, count($roll_content_data -> button) - 1);
+                            $random_roll_value = $roll_content_data -> button[$random_roll_num] -> value;
+                            $random_roll_display_num = $random_roll_num + 1;
+                        }
 
                         // print_r ($random_roll_value);
 
                         echo "<div class='container-fluid'>";
                             echo "<div class='row justify-content-center'>";
                                 echo "<div class='col-11 col-md-6 output spell-display py-5'>";
+
+                                if(isset($_GET["userInput"])) {
+                                    echo "I am here";
+                                    
+
+
+                                    
+                                } else {
                                     echo "<p class='spell-key mb-0'>You rolled a: ${random_roll_display_num}</p>";
                                     echo "<p class='mb-0'><strong>${random_roll_value}</strong></p>";
+
+                                }
+
                                 echo "</div>";
                             echo "</div>";
                         echo "</div>";
                     }
                 }
+
             ?>
         </div>
     </h4>
