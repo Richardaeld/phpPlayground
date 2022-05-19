@@ -40,16 +40,8 @@
             <div class="row justify-content-center">
                 <div class="col-11 mt-5 mx-2 py-4 flex-content-center" style="color:black">
                     <?php
-
-                        // echo '<pre>';
-                        //     print_r($dice_data -> button[2]);
-                        // echo '</pre>';
-
                         foreach($dice_data -> button as $key => $value) {
-
-                            // $userInput = "user".$value -> name;
-                            // $userInput = "user" + "someting";
-
+                            // Removes/add output container if there is output
                             if (isset($_GET[$value -> name]) || isset($_GET["user".$value -> name]) ){
                                     // API call
                                     $parent_key =  $value -> id;
@@ -57,77 +49,45 @@
                                     $json_api_roll_content = file_get_contents($api_roll_content);
                                     $roll_content_data = json_decode($json_api_roll_content);
 
-
+                                // Allows random or user input to be displayed
                                 if (isset($_GET["user".$value -> name])) {
-                                    // echo ";lasdkjf;laskdfk";
-                                    // $random_roll_value = $_GET["userRoll".$value -> name];
-                                    // echo $random_roll_value;
-                                    // $random_roll_display_num = $random_roll_value + 1;
-
                                     $random_roll_num = $_GET["userRoll".$value -> name] - 1;
                                     $random_roll_value = $roll_content_data -> button[$random_roll_num] -> value;
                                     $random_roll_display_num = $random_roll_num + 1;
-                                    echo $random_roll_value, "  ";
-                                    echo $value -> name;
-                                    echo "  ";
-                                    echo $_GET["user".$value -> name];
-
-
+                                    // echo $random_roll_value, "  ";
+                                    // echo $value -> name;
+                                    // echo "  ";
+                                    // echo $_GET["user".$value -> name];
                                 } else {
                                     $random_roll_num = mt_rand(0, count($roll_content_data -> button) - 1);
                                     $random_roll_value = $roll_content_data -> button[$random_roll_num] -> value;
                                     $random_roll_display_num = $random_roll_num + 1;
-                                    // $random_roll_num = mt_rand(0, count($roll_content_data -> button) - 1);
-
                                 }
-
-
-
-
 
                                 echo "<div class='container-fluid'>";
                                     echo "<div class='row justify-content-center'>";
-
-
-
                                         echo "<div class='col-6 col-md-5 output spell-display py-5'>";
-                                        echo '<span class="ouput spell-display">';
-                                            echo '<p><strong>Slide your DM your new roll?</strong></p>';
-                                        echo '</span>';
-                                        echo '<form action="get" class="mt-5 p-1 row nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
-                                            $form_value = $value -> name;
-                                            // echo "<label class='col-12'>Slide your DM your roll?</label>";
-                                            $maxCount = count($roll_content_data -> button) - 1;
-                                            echo "<input class='col-12 input-border' type='number' name='userRoll${form_value}' placeholder='7' value='1' min='1' max='${maxCount}' required>";
-                                            echo "<button class='col-12  no-button' type='submit' name='user${form_value}' value='submit'>";
+                                            echo '<span class="ouput spell-display">';
+                                                echo '<p><strong>Slide your DM your new roll?</strong></p>';
+                                            echo '</span>';
+                                            echo '<form action="get" class="mt-5 p-1 row nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
+                                                $form_value = $value -> name;
+                                                $maxCount = count($roll_content_data -> button);
+                                                echo "<input class='col-12 input-border' type='number' name='userRoll${form_value}' placeholder='7' value='1' min='1' max='${maxCount}' required>";
+                                                echo "<button class='col-12  no-button' type='submit' name='user${form_value}' value='submit'>";
+                                                    echo 'Submit';
+                                                echo '</button>';
+                                            echo '</form>';
+                                        echo "</div>";
 
-
-                                            // if 
-
-                                                echo 'Submit';
-                                            echo '</button>';
-                                        echo '</form>';
-                                    echo "</div>";
-
-
-                                    echo "<div class='col-6 col-md-6 output spell-display py-5'>";
-
-                                        
-
-                                    echo "<p class='spell-key mb-0'>You rolled a: ${random_roll_display_num}</p>";
-                                    echo "<p class='mb-0'><strong>${random_roll_value}</strong></p>";
-
-                                echo "</div>";
-
-
+                                        echo "<div class='col-6 col-md-6 output spell-display py-5'>";
+                                            echo "<p class='spell-key mb-0'>You rolled a: ${random_roll_display_num}</p>";
+                                            echo "<p class='mb-0'><strong>${random_roll_value}</strong></p>";
+                                        echo "</div>";
                                     echo "</div>";
                                 echo "</div>";
-
-
-
                             }
                         }
-
                     ?>
                 </div>
             </div>
