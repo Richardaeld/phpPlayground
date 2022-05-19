@@ -12,8 +12,8 @@
 
     <header class="container-fluid">
         <div class="row justify-content-center">
-            <h1 class="mt-4">PHP Powered DM Dice Roll Tool</h1>
-            <h2>Pick One Of Our Die or Input Your Own!</h2>
+            <h1 class="mt-4 header-text">PHP Powered DM Dice Roll Tool</h1>
+            <h2 class="header-text">Pick A Table To Randomly Roll On or Input Your Own Roll!</h2>
             <div class="col-12 mt-5 mx-2 py-4 index-background flex-content-center" style='color:black'>
                 <?php
                     // inital api call
@@ -69,7 +69,7 @@
                                                 $form_value = $value -> name;
                                                 $maxCount = count($roll_content_data -> button);
                                                 echo "<input class='col-12 input-border' type='number' name='userRoll${form_value}' placeholder='7' value='1' min='1' max='${maxCount}' required>";
-                                                echo "<button class='col-12  no-button' type='submit' name='user${form_value}' value='submit'>";
+                                                echo "<button class='col-12  user-input-button' type='submit' name='user${form_value}' value='submit'>";
                                                     echo 'Submit';
                                                 echo '</button>';
                                             echo '</form>';

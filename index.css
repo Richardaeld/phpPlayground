@@ -54,13 +54,24 @@ p {
 }
 
 .no-button {
-  background-color: transparent;
+
   border: none;
 }
 
+.user-input-button {
+  background-color:rgba(0, 225, 0, .5)!important;
+  border-radius: 255px 15px 255px 15px/15px 255px 15px 255px;
+}
+
+
+
 .input-border {
   border-radius: 255px 15px 255px 15px/15px 255px 15px 255px;
+}
 
+.header-text {
+  text-shadow:2px 2px 4px #010203,
+              0px 0px 4px #010203;
 }
 
 /*------------------ 1st level Nav Buttons (main)  ------------------*/
