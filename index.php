@@ -19,12 +19,18 @@
                 $api_dice = 'https://dnd-rolling-chart-api.herokuapp.com/api/button/main/viewAll/children/3';
                 $json_api_dice = file_get_contents($api_dice);
                 $dice_data = json_decode($json_api_dice);
-                $dice_data -> button[2]  = new stdClass;
-                $dice_data -> button[2] -> name  = "userInput";
-                $dice_data -> button[2] -> obj_name  = "User input";
-                $dice_data -> button[2] -> parent_foreign_key  = false;
+                // $dice_data -> button[2]  = new stdClass;
+                // $dice_data -> button[2] -> name  = "userInput";
+                // $dice_data -> button[2] -> obj_name  = "User input";
+                // $dice_data -> button[2] -> parent_foreign_key  = false;
+                // $dice_data -> button[2] -> radio_button  = [];
 
                 foreach($dice_data -> button as $key => $value) {
+
+                    // $user_input_radio = $dice_data -> button[2] -> radio_button;
+                    // $user_input_radio = array(1, 2);
+                    // $dice_data -> button[2] -> radio_button = array($dice_data -> button[2] -> radio_button, $value -> name);
+
                     echo '<form action="get" class="nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
                         $form_value = $value -> name;
 
@@ -69,12 +75,14 @@
                             echo "<div class='row justify-content-center'>";
                                 echo "<div class='col-11 col-md-6 output spell-display py-5'>";
 
+
+
                                 if(isset($_GET["userInput"])) {
-                                    echo "I am here";
-                                    
+                                    // echo "I am here";
 
+                                    print_r($value -> $radio_button[1]);
+                                    print_r($value);
 
-                                    
                                 } else {
                                     echo "<p class='spell-key mb-0'>You rolled a: ${random_roll_display_num}</p>";
                                     echo "<p class='mb-0'><strong>${random_roll_value}</strong></p>";
