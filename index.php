@@ -52,17 +52,12 @@
                                 // Allows random or user input to be displayed
                                 if (isset($_GET["user".$value -> name])) {
                                     $random_roll_num = $_GET["userRoll".$value -> name] - 1;
-                                    $random_roll_value = $roll_content_data -> button[$random_roll_num] -> value;
-                                    $random_roll_display_num = $random_roll_num + 1;
-                                    // echo $random_roll_value, "  ";
-                                    // echo $value -> name;
-                                    // echo "  ";
-                                    // echo $_GET["user".$value -> name];
                                 } else {
                                     $random_roll_num = mt_rand(0, count($roll_content_data -> button) - 1);
-                                    $random_roll_value = $roll_content_data -> button[$random_roll_num] -> value;
-                                    $random_roll_display_num = $random_roll_num + 1;
                                 }
+                                // Sets roll value and roll num to be displayed in user friendly form
+                                $random_roll_value = $roll_content_data -> button[$random_roll_num] -> value;
+                                $random_roll_display_num = $random_roll_num + 1;
 
                                 echo "<div class='container-fluid'>";
                                     echo "<div class='row justify-content-center'>";
@@ -80,7 +75,9 @@
                                             echo '</form>';
                                         echo "</div>";
 
+                                        $table_name = $value -> obj_name;
                                         echo "<div class='col-6 col-md-6 output spell-display py-5'>";
+                                            echo "<p><strong>${table_name} Table:</strong></p>";
                                             echo "<p class='spell-key mb-0'>You rolled a: ${random_roll_display_num}</p>";
                                             echo "<p class='mb-0'><strong>${random_roll_value}</strong></p>";
                                         echo "</div>";
