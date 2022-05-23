@@ -60,9 +60,10 @@
                                 // Sets roll value and roll num to be displayed in user friendly form
                                 $random_roll_value = $roll_content_data -> button[$random_roll_num] -> value;
                                 $random_roll_display_num = $random_roll_num + 1;
-                                // Sets a table length max and table name
+                                // Sets a table length max and table name and value
                                 $maxCount = count($roll_content_data -> button);
                                 $form_value = $value -> name;
+                                $table_name = $value -> obj_name;
 
                                 echo "<div class='container-fluid'>";
                                     echo "<div class='row justify-content-between'>";
@@ -78,7 +79,6 @@
                                             echo '</form>';
                                         echo "</div>";
                                         // Roll results
-                                        $table_name = $value -> obj_name;
                                         echo "<div class='col-12 col-md-6 output spell-display py-5 order-0 order-xl-1 flex-content-center'>";
                                             echo "<div class='row'>";
                                                 echo "<p class='col-12'><strong>${table_name} Table:</strong></p>";
