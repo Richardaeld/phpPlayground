@@ -22,7 +22,7 @@
                     $dice_data = json_decode($json_api_dice);
 
                     foreach($dice_data -> button as $key => $value) {
-                        echo '<form action="get" class="nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
+                        echo '<form class="nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
                             $form_value = $value -> name;
                             echo "<input type='hidden' name='${form_value}' placeholder='${form_value}' value='${form_value}'>";
                             echo "<button class='hand-drawn-container-inner no-button' type='submit' name='level${form_value}' value='submit'>";
@@ -65,7 +65,7 @@
                                             echo '<span class="ouput spell-display">';
                                                 echo '<p><strong>Slide your DM your new roll?</strong></p>';
                                             echo '</span>';
-                                            echo '<form action="get" class="mt-5 p-1 row nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
+                                            echo '<form class="mt-5 p-1 row nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
                                                 $form_value = $value -> name;
                                                 $maxCount = count($roll_content_data -> button);
                                                 echo "<input class='col-12 input-border' type='number' name='userRoll${form_value}' placeholder='7' value='1' min='1' max='${maxCount}' required>";
@@ -77,10 +77,12 @@
 
                                         $table_name = $value -> obj_name;
                                         echo "<div class='col-12 col-md-6 output spell-display py-5 order-0 order-xl-1 flex-content-center'>";
-                                            echo "<p><strong>${table_name} Table:</strong></p>";
-                                            echo "<span>";
-                                                echo "<p class='spell-key mb-0'>You rolled a: ${random_roll_display_num}</p>";
-                                                echo "<p class='mb-0'><strong>${random_roll_value}</strong></p>";
+                                            echo "<span class='row'>";
+                                                echo "<p class='col-12'><strong>${table_name} Table:</strong></p>";
+                                                echo "<span class='col-12'>";
+                                                    echo "<p class='spell-key mb-0'>You rolled a: ${random_roll_display_num}</p>";
+                                                    echo "<p class='mb-0'><strong>${random_roll_value}</strong></p>";
+                                                echo "</span>";
                                             echo "</span>";
                                         echo "</div>";
                                     echo "</div>";
