@@ -22,9 +22,10 @@
                     $json_api_dice = file_get_contents($api_dice);
                     $dice_data = json_decode($json_api_dice);
 
+                    // Iterates over provided JSON objects
                     foreach($dice_data -> button as $key => $value) {
+                        $form_value = $value -> name;
                         echo '<form class="nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
-                            $form_value = $value -> name;
                             echo "<input type='hidden' name='${form_value}' placeholder='${form_value}' value='${form_value}'>";
                             echo "<button class='hand-drawn-container-inner no-button' type='submit' name='level${form_value}' value='submit'>";
                                 echo $value -> obj_name;
@@ -59,23 +60,28 @@
                                 // Sets roll value and roll num to be displayed in user friendly form
                                 $random_roll_value = $roll_content_data -> button[$random_roll_num] -> value;
                                 $random_roll_display_num = $random_roll_num + 1;
+                                // Sets a table length max and table name
+                                $maxCount = count($roll_content_data -> button);
+                                $form_value = $value -> name;
 
                                 echo "<div class='container-fluid'>";
                                     echo "<div class='row justify-content-between'>";
+                                        // Form allowing user input
                                         echo "<div class='col-12 col-md-5 output spell-display py-5 order-1 order-xl-0'>";
                                             echo '<span class="ouput spell-display">';
-                                                echo '<p><strong>Slide your DM your new roll?</strong></p>';
+                                                echo "<p><strong>";
+                                                    echo "<span class='d-block'>Slide your DM your new roll? ";
+                                                    echo "<span class='d-block'>Submit your D${maxCount} Roll";
+                                                echo "</strong></p>";
                                             echo '</span>';
                                             echo '<form class="mt-5 p-1 row nonselectable hand-drawn-text hand-drawn-container-outer hand-drawn-border ">';
-                                                $form_value = $value -> name;
-                                                $maxCount = count($roll_content_data -> button);
                                                 echo "<input class='col-12 input-border' type='number' name='userRoll${form_value}' placeholder='7' value='1' min='1' max='${maxCount}' required>";
                                                 echo "<button class='col-12  user-input-button' type='submit' name='user${form_value}' value='submit'>";
                                                     echo 'Submit';
                                                 echo '</button>';
                                             echo '</form>';
                                         echo "</div>";
-
+                                        // Roll results
                                         $table_name = $value -> obj_name;
                                         echo "<div class='col-12 col-md-6 output spell-display py-5 order-0 order-xl-1 flex-content-center'>";
                                             echo "<span class='row'>";
