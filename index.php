@@ -45,11 +45,11 @@
                         foreach($dice_data -> button as $key => $value) {
                             // Removes/add output container if there is output
                             if (isset($_GET[$value -> name]) || isset($_GET["user".$value -> name]) ){
-                                    // API call
-                                    $parent_key =  $value -> id;
-                                    $api_roll_content = "https://dnd-rolling-chart-api.herokuapp.com/api/button/sub/viewAll/children/${parent_key}";
-                                    $json_api_roll_content = file_get_contents($api_roll_content);
-                                    $roll_content_data = json_decode($json_api_roll_content);
+                                // API call
+                                $parent_key =  $value -> id;
+                                $api_roll_content = "https://dnd-rolling-chart-api.herokuapp.com/api/button/sub/viewAll/children/${parent_key}";
+                                $json_api_roll_content = file_get_contents($api_roll_content);
+                                $roll_content_data = json_decode($json_api_roll_content);
 
                                 // Allows random or user input to be displayed
                                 if (isset($_GET["user".$value -> name])) {
